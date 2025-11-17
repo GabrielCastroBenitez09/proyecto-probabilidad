@@ -1,15 +1,15 @@
 # Instalación de Paquetes
-#install.packages("tidyverse")
-#install.packages("janitor")
+install.packages("tidyverse")
+install.packages("janitor")
 
 # Librerias 
-#library(tidyverse)
-#library(dplyr)
-#library(janitor)
+library(tidyverse)
+library(dplyr)
+library(janitor)
 
 
 # Base de Datos
-Homicidio_2015_2024 <- read.csv("C:/Users/monic/Documents/proyecto-probabilidad/Homicidios_2015_2024.csv")
+Homicidio_2015_2024 <- read.csv("datos/Homicidios_2015_2024.csv")
 
 head(Homicidio_2015_2024)
 str(Homicidio_2015_2024)
@@ -107,7 +107,9 @@ Homicidio_2015_2024 <- Homicidio_2015_2024 %>%
 str(Homicidio_2015_2024)
 
 
-
+# Guardar la base de datos limpia 
+write.csv(Homicidio_2015_2024, "datos/Homicidios_Limpios_2015_2024.csv", row.names = FALSE)
+saveRDS(Homicidio_2015_2024, "datos/Homicidios_Limpios_2015_2024.rds")
 
 
 
