@@ -1,0 +1,73 @@
+Modelos de probabilidad:
+
+1. Binomial
+
+se halla la probabilidad, en este caso el promedio, o sea la proporcion de veces que ocurrio cierto caso en todos los datos
+
+mayor/menor de edad
+
+
+
+escenario_del_hecho = case_when(
+            escenario_del_hecho == "Ambulancia - Transporte Sanitario" ~ "Ambulancia - transporte sanitario",
+            escenario_del_hecho == "Áreas Deportivas y/o Recreativas" ~ "Áreas deportivas y/o recreativas",
+            escenario_del_hecho == "Calle (Autopista,Avenida,Dentro de La Ciudad)" ~ "Calle (autopista, avenida, dentro de la ciudad)",
+            escenario_del_hecho == "Carretera (Fuera de La Ciudad)" ~ "Carretera (fuera de la ciudad)",
+            escenario_del_hecho == "Centro de Atención Médica (Hospital,Clínica,Consultorio,Etc)" ~ 
+            "Centro de atención médica (hospital, clínica, consultorio, etc.)",
+            
+            escenario_del_hecho == "Centros de Reclusión" ~ "Centros de reclusión",
+            escenario_del_hecho == "Centros Educativos" ~ "Centros educativos",
+            escenario_del_hecho == "Espacios Acuáticos al Aire Libre (Mar,Río,Arroyo,Humedal,Lago,Etc)" ~ 
+            "Espacios acuáticos al aire libre (mar, río, arroyo, humedal, lago, etc.)",
+
+            escenario_del_hecho == "Espacios Terrestres al Aire Libre (Bosque,Potrero,Montaña,Playa,Etc)" ~ 
+            "Espacios terrestres al aire libre (bosque, potrero, montaña, playa, etc.)",
+
+            escenario_del_hecho == "Establecimiento comercial (plaza de mercado, galería)" ~ 
+            "Establecimiento comercial (tienda, centro comercial, almacén, plaza de mercado, galería)",
+            escenario_del_hecho == "Establecimiento comercial (tienda, centro comercial, almacén)" ~ 
+            "Establecimiento comercial (tienda, centro comercial, almacén, plaza de mercado, galería)",
+            escenario_del_hecho == "Establecimiento Comercial (Tienda,Centro Comercial,Almacén,Plaza de Mercado)" ~ 
+            "Establecimiento comercial (tienda, centro comercial, almacén, plaza de mercado, galería)",
+            escenario_del_hecho == "Establecimiento comercial (tienda, centro comercial, almacén, plaza de mercado)" ~ 
+            "Establecimiento comercial (tienda, centro comercial, almacén, plaza de mercado, galería)",
+            
+            escenario_del_hecho == "Establecimiento Industrial (Fábrica,Planta) y/o Obras en Construcción" ~ 
+            "Establecimiento industrial (fábrica, planta) y/o obras en construcción",
+
+            escenario_del_hecho == "Establecimientos de expendio de comidas (restaurantes, asaderos, salsamentarias, etc.)" ~ 
+            "Establecimientos de Expendio de Comidas (Restaurantes,Asaderos,Salsamentarias,Etc)",
+
+            escenario_del_hecho == "Establecimientos Dedicados a la Administración Pública (Cortes,Juzgados,Ministerios,Etc)" ~ 
+            "Establecimientos dedicados a la administración pública (cortes, juzgados, ministerios, etc.)",
+            
+            escenario_del_hecho == "Establecimientos Financieros y Relacionados (Bancos,Fiduciarias,Etc)" ~ 
+            "Establecimientos financieros y relacionados (bancos, fiduciarias, etc.)",
+
+            escenario_del_hecho == "Estaciones de Servicio (Bombas de Gasolina)" ~ "Estaciones de servicio (bombas de gasolina)",
+            escenario_del_hecho == "Guarniciones Militares y/o de Policía" ~ "Guarniciones militares y/o de policía",
+            escenario_del_hecho == "Lugar Público sin Otra Indicación" ~ "Lugar público sin otra indicación",
+            escenario_del_hecho == "Lugares de Actividades Culturales (Cines,Teatros,Museos,Bibliotecas,Etc)" ~ 
+            "Lugares de actividades culturales (cines, teatros, museos, bibliotecas, etc.)",
+
+            escenario_del_hecho == "Lugares de Cuidado de Personas (Hospicios,Orfelinatos,Hogares Geriatricos,Etc)" ~ 
+            "Lugares de cuidado de personas (hospicios, orfelinatos, hogares geriátricos, etc.)",
+            
+            escenario_del_hecho == "Lugares de Esparcimiento con Expendio de Alcohol" ~ "Lugares de esparcimiento con expendio de alcohol",
+            escenario_del_hecho == "Lugares de Explotación de Minas Y Canteras" ~ "Lugares de explotación de minas y canteras",
+            escenario_del_hecho == "Lugares de Hospedaje (Hoteles,Campamentos y Otros Tipos de Hospedaje No Permanente,Moteles,Etc)" ~ 
+            "Lugares de hospedaje (hoteles, campamentos y otros tipos de hospedaje no permanente, moteles, etc.)",
+
+            escenario_del_hecho == "Oficinas y/o Edificios de Oficinas" ~ "Oficinas y/o edificios de oficinas",
+            escenario_del_hecho == "Parqueaderos,Estacionamientos" ~ "Parqueaderos, estacionamientos",
+            escenario_del_hecho == "Sin Información" ~ "Sin información",
+            escenario_del_hecho == "Sitio de Culto (Capilla,Iglesia,Templo,Etc)" ~ "Sitio de culto (capilla, iglesia, templo, etc.)",
+            escenario_del_hecho == "Terminales de Pasajeros" ~ "Terminales de pasajeros",
+            escenario_del_hecho == "Terreno Baldío" ~ "Terreno baldío",
+            escenario_del_hecho == "Vehículo Servicio Particular" ~ "Vehículo servicio particular",
+            escenario_del_hecho == "Vehículo Servicio Público" ~ "Vehículo servicio público",
+            escenario_del_hecho == "Zonas de Actividades Agropecuarias" ~ "Zonas de actividades agropecuarias",
+            escenario_del_hecho == "Vía Pública" ~ "Vía pública",
+            TRUE ~ escenario_del_hecho
+        ),
