@@ -3,7 +3,7 @@ install.packages("ggthemes")
 install.packages("viridis")
 install.packages("glue")
 
-
+ 
 # Librerias
 library(tidyr)
 library(dplyr)
@@ -12,6 +12,7 @@ library(ggthemes)
 library(viridis)
 library(forcats)
 library(glue)
+library(scales)
 
 
 # Base de Datos
@@ -368,3 +369,35 @@ ggplot(homicidios_anual,
        caption = "Incluye unicamente los 5 departamentos con mayor conteo de homicidios.") +
   ggtitle("Homicidios Anuales por Departamento") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+# 
+top_5_deptos <- homicidios %>%
+  group_by(departamento_del_hecho_dane) %>%
+  summarise(homicidios_totales = n()) %>%
+  arrange(desc(homicidios_totales)) %>%
+  slice_head(n = 5) %>%
+  pull(departamento_del_hecho_dane) 
+
+datos_para_grafica <- homicidios %>%
+  filter(departamento_del_hecho_dane %in% top_5_deptos) %>%
+  group_by(departamento_del_hecho_dane, grupo_mayor_menor_de_edad) %>%
+  summarise(Conteo = n(), .groups = 'drop') %>%
+  group_by(departamento_del_hecho_dane) %>%
+  mutate(Proporcion = Conteo / sum(Conteo)) %>%
+  ungroup()
+
+ggplot(datos_para_grafica, aes(x = departamento_del_hecho_dane, y = Proporcion, fill = grupo_mayor_menor_de_edad)) +
+  geom_col(color = "white") +
+  labs(
+    title = "Homicidios por Grupo de Edad y Departamentos",
+    x = "Departamento",
+    y = "Porcentaje de Homicidios",
+    fill = "Grupo de Edad",
+    caption = "Incluye unicamente los 5 departamentos con mayor conteo de homicidios.") +
+  scale_y_continuous(labels = scales::percent) +
+  theme_light() +
+  scale_fill_viridis(discrete = TRUE, option = "D") +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold"),
+    plot.subtitle = element_text(hjust = 0.5),
+    axis.text.x = element_text(angle = 45, hjust = 1))
